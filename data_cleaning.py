@@ -13,7 +13,7 @@ import pandas as pd
 import numpy as np
 
 # Import scraped data
-directory = "../scraper_data" # directory location
+directory = "scraper_data" # directory location
 
 raw_data = []
 for filename in os.listdir(directory) :
@@ -24,7 +24,7 @@ for filename in os.listdir(directory) :
         for data in filedata: raw_data.append(data)
         
 # Extract match stats in raw data
-unlist_data = [data[2:-3].split("], [") for data in raw_data]
+unlist_data = [data[15:-3].split("], [") for data in raw_data]
 
 result = []
 for data in unlist_data:
@@ -81,6 +81,10 @@ print("Final variables:", final_cats)
 data_dict = {}
 for cat in final_cats:
     data_dict[cat] = []
+data_dict["match_id"] = []
+
+# Extract match id
+unlist_id = [data.split(", [")[0].replace("[","") for data in raw_data]
 
 # Add all of data to dict
 for stat_data in result:
@@ -92,6 +96,9 @@ for stat_data in result:
     # Add data to dictionary
     data_dict = add_cats(data_dict, cats_result, list_data, final_cats)
 
+# Add match_id
+data_dict["match_id"] = unlist_id
+
 # Create datatable from dict
 datatable = pd.DataFrame(data_dict)
 
@@ -99,10 +106,10 @@ datatable = pd.DataFrame(data_dict)
 datatable['half-time_score'] = datatable['half-time_score'].apply(lambda x: \
                                          x.replace("(","").replace(")",""))
 datatable['ball_possession'] = datatable['ball_possession'].apply(lambda x: \
-                                         x.replace("%",""))
+                                         x.replace("%","").replace("'",""))
 
 # Change order of cols in datatable
-datatable = datatable[['half-time_score', 'ball_possession', 'goal_attempts', 
+datatable = datatable[['match_id','half-time_score', 'ball_possession', 'goal_attempts', 
                        'shots_on_goal', 'shots_off_goal', 'dangerous_attacks',
                        'blocked_shots', 'corner_kicks', 'fouls', 'yellow_cards',
                        'red_cards', 'total_passes', 'completed_passes',

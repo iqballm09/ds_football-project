@@ -18,7 +18,7 @@ from selenium.webdriver.chrome.options import Options
 # Set environment and driver
 os.environ['PATH'] = "/usr/bin/"
 driver1 = webdriver.Chrome()
-driver1.get("https://www.flashscore.com/football/france/ligue-1-2020-2021/results/")
+driver1.get("https://www.flashscore.com/football/spain/laliga-2020-2021/results/")
 
 # Find ids match results
 elements = driver1.find_elements(By.XPATH, '//*[@id]')
@@ -27,7 +27,7 @@ for element in elements:
     if element.get_attribute("id")[:4] == "g_1_":
         ids.append(element.get_attribute("id"))
         
-ids = ids[6:]
+# ids = ids[6:]
 
 
 # Find matches
@@ -50,7 +50,8 @@ for id in ids[i:]:
         result.append(stats.text.split())
     # Add score result
     result.append([match_score[-2], "half-time", "score", match_score[-1]])
-    result.append([match_score[-4], "full-time", "score", match_score[-3]])        
+    result.append([match_score[-4], "full-time", "score", match_score[-3]])
+    result.append([id])
     matches.append(result)
     i = i + 1
     print("Iterasi ke",i)
@@ -61,6 +62,3 @@ file = open(filename, "w")
 for match in matches:
     file.write(str(match) + "\n")
 file.close()
-
-
-
