@@ -13,7 +13,7 @@ import pandas as pd
 import numpy as np
 
 # Import scraped data
-directory = "data_scraping/result_data" # directory location
+directory = "../scraper_data" # directory location
 
 raw_data = []
 for filename in os.listdir(directory) :
