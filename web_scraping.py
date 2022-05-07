@@ -26,9 +26,6 @@ ids = []
 for element in elements:
     if element.get_attribute("id")[:4] == "g_1_":
         ids.append(element.get_attribute("id"))
-        
-# ids = ids[6:]
-
 
 # Find matches
 i = 0
@@ -62,3 +59,4 @@ file = open(filename, "w")
 for match in matches:
     file.write(str(match) + "\n")
 file.close()
+    
