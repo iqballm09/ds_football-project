@@ -2,7 +2,7 @@
 <img src="https://i.pinimg.com/originals/b4/90/05/b490053689e3026416d6417816f0a1fe.jpg" width="550" height="300" />
 
 * Create model that can predict football match result (Win, Lose, Draw) based on half-time statistics.
-* Scraped data over 2000 half-time match on top 6 football league in 2020/2021 season (Premier League, Serie A, La Liga, Bundesliga, Eredivisie, Ligue 1).
+* Scraped data over 1800 half-time match on top 5 football league in 2020/2021 season (Premier League, Serie A, La Liga, Bundesliga, Ligue 1).
 * dst
 
 ## Code and Resources Used
@@ -11,7 +11,7 @@
 * dst
 
 ## Data Scraping
-Scrape over 2000 match statistics half-time data from [flashscore.com](https://www.flashscore.com/ "flashscore.com") website using Selenium framework. For each match statistics, we got the following features:
+Scrape over 1800 match statistics half-time data from [flashscore.com](https://www.flashscore.com/ "flashscore.com") website using Selenium framework. For each match statistics, we got the following features:
 * Half-time score
 * Shots on goal
 * Shots off goal
